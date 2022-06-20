@@ -20,12 +20,22 @@ class Home extends Component {
     // This solution works for a small application but a more complex hashing function should be used when
     // dealing with a larger data sensitive project.
     todo.id = Math.random();
+    //searches to validate that this todo doesn't already exist
+    if (this.state.todos.find(item => item.content === todo.content)){
+      //if it does an alert is shown
+      alert("This is already a Todo item, try again!!")
+      return;
+    }
+    else{
+      // Create a array that contains the current array and the new todo item
+      let new_list = [...this.state.todos, todo];
+    
     // Create a array that contains the current array and the new todo item
-    let new_list = [...this.state.todos, todo];
     // Update the local state with the new array.
     this.setState({
       todos: new_list,
     });
+  }
   };
 
   deleteTodo = (id) => {
